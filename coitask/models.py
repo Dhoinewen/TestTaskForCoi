@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Category(models.Model):
+class Specialization(models.Model):
     name = models.CharField(max_length=100, db_index=True)
 
     def __str__(self):
@@ -10,13 +10,17 @@ class Category(models.Model):
     def get_doctors(self):
         return ",".join([str(p) for p in self.doctors.all()])
 
+    class Meta():
+        verbose_name = 'Doctor specialization'
+        verbose_name_plural = 'Doctor specialization'
+
 
 class Doctor(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     birthday = models.DateField()
     work_experience = models.DateField()
-    cat = models.ManyToManyField(Category, blank=True, related_name='doctors')
+    cat = models.ManyToManyField(Specialization, blank=True, related_name='doctors')
 
     def get_cat(self):
         return ",".join([str(p) for p in self.cat.all()])

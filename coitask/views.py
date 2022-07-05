@@ -3,7 +3,7 @@ from datetime import timedelta
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from .models import *
-from .serializer import DoctorSerializer, CategorySerializer
+from .serializer import DoctorSerializer, SpecializationSerializer
 
 
 class DoctorApiListPagination(PageNumberPagination):
@@ -39,7 +39,7 @@ class DoctorApiList(generics.ListAPIView):
         return queryset
 
 
-class CategoryApiList(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+class SpecializationApiList(generics.ListCreateAPIView):
+    queryset = Specialization.objects.all()
+    serializer_class = SpecializationSerializer
     pagination_class = None

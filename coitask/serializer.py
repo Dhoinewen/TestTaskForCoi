@@ -15,11 +15,11 @@ class DoctorSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'birthday', 'work_experience', 'cat')
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class SpecializationSerializer(serializers.ModelSerializer):
     doctors = CatListingField(many=True, read_only=True)
 
     class Meta:
-        model = Category
+        model = Specialization
         fields = ('id', 'name', 'doctors')
 
 

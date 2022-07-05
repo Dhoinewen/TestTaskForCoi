@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Doctor, Category
+from .models import Doctor, Specialization
 
 
 class DoctorAdmin(admin.ModelAdmin):
@@ -10,11 +10,11 @@ class DoctorAdmin(admin.ModelAdmin):
     list_filter = ('work_experience', 'cat')
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class SpecializationAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'get_doctors')
     list_display_links = ('id', 'name')
     search_fields = ('id', 'name')
 
 
 admin.site.register(Doctor, DoctorAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Specialization, SpecializationAdmin)
