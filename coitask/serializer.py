@@ -13,7 +13,7 @@ class CatListingField(serializers.RelatedField):
 class ExperienceCalculator(serializers.Serializer):
     def to_representation(self, value):
         experience = date.today() - value
-        return experience.days
+        return '%d days' % (experience.days)
 
 
 class DoctorSerializer(serializers.ModelSerializer):
