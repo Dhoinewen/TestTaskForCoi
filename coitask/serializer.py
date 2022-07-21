@@ -1,4 +1,7 @@
 from rest_framework import serializers
+from rest_framework.relations import StringRelatedField
+from datetime import date
+
 from .models import *
 
 
@@ -7,8 +10,15 @@ class CatListingField(serializers.RelatedField):
         return value.name
 
 
+class ExperienceCalculator(serializers.Serializer):
+    def to_representation(self, value):
+        experience = date.today() - value
+        return experience.days
+
+
 class DoctorSerializer(serializers.ModelSerializer):
-    cat = CatListingField(many=True, read_only=True)
+    cat = StringRelatedField(many=True)
+    work_experience = ExperienceCalculator()
 
     class Meta:
         model = Doctor
